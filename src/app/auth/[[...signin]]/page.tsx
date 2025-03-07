@@ -1,5 +1,10 @@
-import { SignIn, SignUp, SignedOut, SignedIn, UserButton } from "@clerk/nextjs";
 
+
+import { SignIn, SignUp, SignedOut, SignedIn, UserButton } from '@clerk/nextjs';
+
+export async function generateStaticParams() {
+  return []; // No pre-generated paths, ensuring fallback behavior
+}
 export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
@@ -7,12 +12,12 @@ export default function LoginPage() {
         <SignedOut>
           <h2 className="text-xl font-semibold mb-4 text-center">Welcome to Our App</h2>
           <div className="flex flex-col gap-4">
-            <SignIn routing="hash" redirectUrl="/auth" />
-            <p className="text-center text-gray-600">or</p>
-            <SignUp routing="hash" redirectUrl="/dashboard" />
+            <SignIn path="/sign-in" routing="path" redirectUrl="/auth" />
+            <p className="text-center text-gray-600">Thanks For A visit</p>
+            <SignUp path="/sign-up" routing="path" redirectUrl="/dashboard" />
           </div>
         </SignedOut>
-
+        
         <SignedIn>
           <div className="flex flex-col items-center">
             <p className="text-lg font-semibold mb-2">You are already signed in!</p>
